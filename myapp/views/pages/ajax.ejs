@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>harjoitus</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <header>
+    <%- include('../partials/header') %>
+    </header>
+    <main>
+      <div class="sisus">
+        <h1><%= new_heading %></h1>
+        <p><%= new_paragraph %></p>
+      </div>
+      <div class="row">
+        <div class="column" style="background-color: #DEB887;">
+          <h2>Here is something for you to cheer up!</h2>
+          <p><br><br>
+            <tr>
+              <td><label for="fact">Get random fact about cats:</label></td>
+              <td><button onclick="myFunction1()">Click me</button></td>
+            </tr><br><br><br><br>
+            <tr>
+              <td><label for="fact">Get random pictures about dogs:</label></td>
+              <td><button onclick="myFunction2()">Click me</button></td>
+              </tr><br><br><br><br>
+              <tr>
+                <td><label for="fact">Doesn't help? Get something sensible to do:</label></td>
+                <td><button onclick="myFunction3()">Click me</button></td>
+                </tr>
+          </p>
+        </div>
+        <div class="column" style="background-color: #DEB887;">
+          <h2>Results:</h2>
+          <p id="demo"></p>
+        </div>
+      </div>
+    </main>
+    <div>
+      <%- include('../partials/footer') %>
+    </div>
+
+    <script>
+ function myFunction1() {
+          
+let url = "https://catfact.ninja/fact";  
+var xmlhttp = new XMLHttpRequest();     
+xmlhttp.open("GET", url, true);     xmlhttp.send();       
+   
+xmlhttp.onreadystatechange = function () {       
+if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {  
+  
+
+let data = JSON.parse(xmlhttp.responseText);
+
+document.getElementById('demo').innerHTML = data.fact;        
+}
+}
+}
+</script>
+
+<script>
+  function myFunction2() {
+           
+ let url = "https://dog.ceo/api/breeds/image/random";  
+ var xmlhttp = new XMLHttpRequest();     
+ xmlhttp.open("GET", url, true);     xmlhttp.send();       
+    
+ xmlhttp.onreadystatechange = function () {       
+ if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {         
+let data = JSON.parse(xmlhttp.responseText); 
+
+/*var x = document.createElement("IMG");
+  x.setAttribute("src", data.message);
+  /*x.setAttribute("width", "304");
+  x.setAttribute("height", "228");*/
+   
+ 
+
+document.getElementById('demo').innerHTML = '<img src=' + data.message+ 'width=304, height=228 alt="picture of dog" >' ;
+}
+ }
+ }
+
+ </script>
+
+<script>
+  function myFunction3() {
+           
+ let url = "https://www.boredapi.com/api/activity";  
+ var xmlhttp = new XMLHttpRequest();     
+ xmlhttp.open("GET", url, true);     xmlhttp.send();       
+    
+ xmlhttp.onreadystatechange = function () {       
+ if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {         
+ let data = JSON.parse(xmlhttp.responseText);  
+ document.getElementById('demo').innerHTML = data.activity;    
+ }
+ }
+ }
+ </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+  </body>
+</html>
